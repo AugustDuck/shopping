@@ -6,15 +6,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasRoles;
+    use HasFactory, Notifiable, HasRoles, HasApiTokens, SoftDeletes;
 
-    const ADMIN = 'admin';
-    const USER = 'user';
     /**
      * The attributes that are mass assignable.
      *
@@ -48,10 +47,25 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    protected static function booted()
+    {
+        static::deleting(function ($user) {
+            if ($user->isForceDeleting()) {
+                $user->phones()->forceDelete();
+                $user->addresses()->forceDelete();
+            } else {
+                $user->phones()->delete();
+                $user->addresses()->delete();
+            }
+            $user->assignRole([]);
+        });
+    }
     public function addresses(){
         return $this->hasMany(Address::class);
     }
-    public function isAdmin(){
-        return $this->roles == self::ADMIN;
+    public function phones(){
+        return $this->hasMany(Phone::class);
     }
+    
 }
+

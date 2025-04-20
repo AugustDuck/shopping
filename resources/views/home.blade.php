@@ -1,6 +1,7 @@
-@extends('layout.app')
+@extends('layout.app.app')
+@section('title', 'Trang chủ')
 @section('content')
-<div id="carouselExampleAutoplaying" class="carousel slide pointer-event container-fluid" data-bs-ride="carousel">
+<div id="carouselExampleAutoplaying" class="carousel slide pointer-event container-fluid w-80" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img class="bd-placeholder-img img-fluid d-block w-50 h-50 " src="{{ asset('images/banner-01.jpg') }}" alt="First slide" />
@@ -22,19 +23,26 @@
   </button>
 </div>
 
-
 <div class="container mt-4">
   <div class="row">
     @for ($i = 0; $i < 10; $i++)
     <div class="col-md-3 mb-4" v-for="product in products">
-      <div class="card h-100">
-      <img src="{{ asset('images/avatar-01.jpg') }}" class="card-img-top" alt="Sản phẩm">
-      <div class="card-body">
-        <h5 class="card-title">Tên Sản Phẩm</h5>
-        <p class="card-text">Giá: <strong>500.000 VND</strong></p>
-        <a href="#" class="btn btn-primary">Mua ngay</a>
-      </div>
-      </div>
+      <a href="{{ route('admin.auth.dashboard') }}" class="text-decoration-none text-dark">
+        <div class="card h-100 card-hover">
+          <img src="{{ asset('images/avatar-01.jpg') }}" class="card-img-top" alt="Sản phẩm">
+          <!-- Nút overlay trong suốt -->
+          <div class="overlay-button">
+            <div class="btn btn-transparent">
+              <i class="	bi bi-eye fs-1"></i> <!-- Icon kính lúp -->
+            </div>
+          </div>
+      
+          <div class="card-body">
+            <h5 class="card-title">Tên Sản Phẩm</h5>
+            <p class="card-text">Giá: <strong>500.000 VND</strong></p>
+          </div>
+        </div>
+      </a>     
     </div>
   @endfor
 

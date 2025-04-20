@@ -34,5 +34,3 @@
         </div>
     </footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFyJ8jdcTBu0a5e7iYjOMMHpmMFLKqDsLvR0Y6EGzVjgKK0IMjAB+RxsIQ" crossorigin="anonymous"></script>

@@ -1,5 +1,4 @@
 
-<header>
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <div class="container">
             <a class="navbar-brand" href="/">RED&WAR</a>
@@ -59,7 +58,7 @@
                     <i class="bi bi-person"></i>
                 </a>
                 {{-- login form --}}
-                <div class="modal fade" id="login" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+                {{-- <div class="modal fade" id="login" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -85,16 +84,17 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 {{-- end login form --}}
                 <!-- Icon Giỏ hàng -->
-                <a href="#" class="text-dark fs-4 position-relative" data-bs-toggle="modal" data-bs-target="#cart">
+                <a href="#" class="text-dark fs-4 position-relative"  data-bs-toggle="modal" data-bs-target="#cart">
                     <i class="bi bi-cart"></i>
                     <span
-                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger p-1 m-2">3</span>
+                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger p-1 m-2">3
+                    </span>
                 </a>
                 <!-- Modal Giỏ hàng -->
-                <div class="modal fade" id="cart" tabindex="-1" aria-labelledby="cartModalLabel"
+                {{-- <div class="modal fade" id="cart"  tabindex="-1" aria-labelledby="cartModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -124,11 +124,11 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </nav>
-</header>
+
 <script>
     document.getElementById("search-icon").addEventListener("click",  (e)=> {
         event.preventDefault();
@@ -145,4 +145,5 @@
     document.getElementById('quantity').addEventListener('input', (e) =>{
         e.target.value = Math.max(e.target.value, 1)
     });
+    
 </script>

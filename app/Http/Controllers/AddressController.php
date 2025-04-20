@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Address;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use Log;
+use App\Models\User;
 class AddressController extends Controller
 {
     /**
@@ -12,7 +14,14 @@ class AddressController extends Controller
      */
     public function index()
     {
-        //
+        $addresses = Address::all();
+        return response()->json([
+            'status' => 'success',
+            'data' => $addresses,
+            'message' => 'Addresses retrieved successfully',
+            'code' => 200,
+            'type' => 'addresses'
+        ]);
     }
 
     /**
@@ -61,5 +70,20 @@ class AddressController extends Controller
     public function destroy(Address $address)
     {
         //
+    }
+    public function getAddressByUserId($userId)
+    {
+        try {
+            $user = User::with(['addresses'])->findOrFail($userId);
+            return response()->json($user->addresses);
+        } catch (\Exception $e) {
+            if ($e instanceof \Illuminate\Database\Eloquent\ModelNotFoundException) {
+                return response()->json(['error' => 'User not found'], 404);
+            } else if ($e instanceof \Illuminate\Database\Eloquent\RelationNotFoundException) {
+                return response()->json(['error' => 'No addresses found for this user'], 404);
+            }
+            return response()->json(['error' => 'An error occurred'], 500);
+        }
+;
     }
 }

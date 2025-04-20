@@ -28,9 +28,9 @@ class ProductFactory extends Factory
                 "categoryId"=>1,
                 "brandId"=>1,
                 "supplierId"=>1,
-                "createdBy"=>$this->faker->numberBetween(1,10),
+                "createdBy"=>$this->faker->paragraph(1),
                 "createdDate"=> $this->faker->dateTime()->format('Y-m-d H:i:s'),
-                "updatedBy"=>$this->faker->numberBetween(1,10),
+                "updatedBy"=>$this->faker->paragraph(1),
                 "updatedDate"=> $this->faker->dateTime()->format('Y-m-d H:i:s'),
             ];
         }
