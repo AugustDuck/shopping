@@ -2,7 +2,7 @@ $(document).ready(function () {
     $(".deleteUserBtn").on("click", function () {
         const idUser = $(this).data("user-id");
         const row = $(this).closest("tr");
-      
+        
         Swal.fire({
             icon: 'warning',
             title: 'Bảo mật dữ liệu',
@@ -15,7 +15,7 @@ $(document).ready(function () {
             if (result.isConfirmed) {
                 console.log(idUser);
                 deleteUser(idUser);
-                row.remove();
+                // row.remove();
             }
         })
     })
@@ -23,6 +23,7 @@ $(document).ready(function () {
 
 function deleteUser(idUser){
     let url = window.route.deleteUser.replace(':id', idUser);
+    console.log(url);
     $.ajax({
         url: url,
         type: "DELETE",

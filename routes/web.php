@@ -9,6 +9,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\RoleController;
+
 Route::get('/menu',[MenuController::class,'index']);
 
 Route::get('/', [PagesController::class,'index'])->name('home');
@@ -45,7 +47,10 @@ Route::prefix('admin')->group(function () {
             // 'destroy' => 'admin.users.destroy',
     ])->middleware(['myauth', 'role:admin']);
 
-
-    
+    Route::resource('/roles', RoleController::class)->names([
+            'index' => 'admin.roles.index',
+            'create' => 'admin.roles.create',
+            'edit' => 'admin.roles.edit'
+    ])->middleware(['myauth', 'role:admin']);
 
 });

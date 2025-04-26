@@ -2,7 +2,7 @@
     <div class="position-sticky">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">
+                <a class="nav-link active" aria-current="page" href="{{ route('admin.auth.dashboard') }}">
                     <i class="bi bi-house-door"></i>
                     <span class="ms-2">Dashboard</span>
                 </a>
@@ -26,7 +26,13 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('admin.roles.index') }}">
+                    <i class="bi bi-person-gear"></i>
+                    <span class="ms-2">Roles&Permissions</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.roles.index') }}">
                     <i class="bi bi-people"></i>
                     <span class="ms-2">Customers</span>
                 </a>
